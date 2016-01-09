@@ -2,3 +2,8 @@ extends layout
 
 block content
   h1= title
+  div
+    form(action='/todo/ajouter', method='post')
+      label(for='todo') Que dois-je faire ?
+      input(type='text', name='newtodo')
+      input(type='submit')
