@@ -2,11 +2,12 @@ extends layout
 
 block content
   h1= title
-  h2= todolist
   div
     form(action='/todo/ajouter', method='post')
       label(for='newtodo') Que dois-je faire ?
-      input(type='text', name='newtodo', id="newtodo")
+      input(type='text', name='newtodo', id='newtodo')
       input(type='submit')
-      each iteam in todolist
-        ul #{todolist}
+      ul
+        each val, index in todolist
+          li= index + ':' + val
+          a(href='/todo/supprimer/'+index+'') Delete
