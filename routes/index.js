@@ -17,29 +17,29 @@ router.use(session({secret: 'todo'}))
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', {
+router.get('/todo', function(req, res, next) {
+  res.render('index.jade', {
     title: 'Votre Todolist !',
     todolist: req.session.todolist
   });
 });
 
-router.post('/ajouter/', urlencodedParser, function(req, res){
+router.post('/todo/ajouter/', urlencodedParser, function(req, res){
   if (req.body.newtodo != '') {
     req.session.todolist.push(req.body.newtodo);
   }
-  res.redirect('/');
-});
+  res.redirect('/todo');
+})
 
-router.get('/supprimer/:id', function(res, req){
+.get('/todo/supprimer/:id', function(res, req){
   if (req.params.id != '') {
     req.session.todolist.splice(req.params.id, 1);
   }
-  res.redirect('/');
+  res.redirect('/todo');
 })
 
 .use(function (req, res, next) {
-  res.redirect('/');
+  res.redirect('/todo');
 });
 
 module.exports = router;

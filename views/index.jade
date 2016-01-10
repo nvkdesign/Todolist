@@ -2,8 +2,11 @@ extends layout
 
 block content
   h1= title
+  h2= todolist
   div
     form(action='/todo/ajouter', method='post')
-      label(for='todo') Que dois-je faire ?
-      input(type='text', name='newtodo')
+      label(for='newtodo') Que dois-je faire ?
+      input(type='text', name='newtodo', id="newtodo")
       input(type='submit')
+      each iteam in todolist
+        ul #{todolist}
