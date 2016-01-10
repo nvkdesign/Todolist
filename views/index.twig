@@ -1,0 +1,30 @@
+{% extends 'layout.twig' %}
+
+{% block title %}{{parent()}}({% endblock title %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 ">
+                <h1>{{ title }}</h1>
+                <hr>
+                <div>
+                    <form action="/todo/ajouter/" method="post">
+                        <div class="form-group">
+                            <label for="newtodo">Que devez-vous faire ?</label>
+                            <input type="text" class="form-control" id="newtodo" placeholder="Votre tâche !">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <hr>
+                    <ul>
+                        {% for todo in todolist %}
+                            <li>{{ loop.index }} {{ todo }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,3 +1,6 @@
+var Twig = require('twig'), // Twig module
+    twig = Twig.twig; // Render function
+
 var express = require('express');
 
 var session = require('cookie-session'); // middleware session
@@ -5,8 +8,8 @@ var bodyParser = require('body-parser'); // middleware gestion de paramètres
 var urlencodedParser = bodyParser.urlencoded({ extended: false});
 
 var router = express.Router();
-router.use(session({secret: 'todo'}));
 
+router.use(session({secret: 'todo'}));
 
 router.use(function(req, res, next){
   if (typeof (req.session.todolist) == 'undefined') {
@@ -18,7 +21,7 @@ router.use(function(req, res, next){
 
 /* GET home page. */
 .get('/todo', function(req, res, next) {
-  res.render('index.jade', {
+  res.render('index.twig', {
     title: 'Votre Todolist !',
     todolist: req.session.todolist
   });
@@ -41,5 +44,6 @@ router.use(function(req, res, next){
 .use(function (req, res, next) {
   res.redirect('/todo');
 });
+
 
 module.exports = router;
